@@ -1,0 +1,39 @@
+schema: umicom.application.v1
+
+application:
+  id: org.umicom.creator
+  name: Umicom AI Creator
+  short_name: AI Creator
+  version: 0.1.0
+  executable: umicom-ai-creator-console
+  aliases: [creator]
+
+framework:
+  minimum_version: 0.9.0
+  compatible_major: 0
+
+frontends:
+  - console
+
+entry:
+  kind: workbench
+  taskbar_group: artificial-intelligence
+  pinned_by_default: false
+  default_layout: create
+
+capabilities:
+  - umicom.ai
+  - umicom.ai.media-generation
+  - umicom.media
+  - umicom.application.experience
+  - umicom.application.federation
+
+source_layout:
+  product_root: src
+  composition_root: src
+  console_frontend: src/console
+
+boundaries:
+  owns_reusable_framework_logic: false
+  owns_persistence: false
+  consumes_framework_services: true
