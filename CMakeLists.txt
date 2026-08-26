@@ -58,6 +58,9 @@ endif()
 add_library(umicom_ai_creator_module STATIC
     src/application.c
     src/workspace.c
+    src/runtime.c
+    src/readiness.c
+    src/workspace_commands.c
 )
 add_library(Umicom::ai_creator_module ALIAS umicom_ai_creator_module)
 
@@ -96,6 +99,33 @@ if(BUILD_TESTING)
     umicom_apply_sanitizers(creator-workspace-test)
     add_test(NAME creator.module.workspace
              COMMAND creator-workspace-test)
+
+    add_executable(creator-runtime-test
+        tests/test_runtime.c
+    )
+    target_link_libraries(creator-runtime-test PRIVATE
+        umicom_ai_creator_module
+    )
+    umicom_apply_warnings(creator-runtime-test)
+    umicom_apply_sanitizers(creator-runtime-test)
+    add_test(
+        NAME creator.module.runtime
+        COMMAND creator-runtime-test
+    )
+
+    add_executable(creator-readiness-runtime-test
+        tests/test_readiness_runtime.c
+    )
+    target_link_libraries(creator-readiness-runtime-test PRIVATE
+        umicom_ai_creator_module
+    )
+    umicom_apply_warnings(creator-readiness-runtime-test)
+    umicom_apply_sanitizers(creator-readiness-runtime-test)
+    add_test(
+        NAME creator.module.readiness_runtime
+        COMMAND creator-readiness-runtime-test
+    )
+
 endif()
 
 install(TARGETS umicom_ai_creator_module
