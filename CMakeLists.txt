@@ -147,3 +147,11 @@ endif()
 
 message(STATUS "Umicom AI Creator Module version: ${PROJECT_VERSION}")
 message(STATUS "Umicom AI Creator uses Framework-owned application experience")
+
+include(
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../framework/cmake/UmicomApplicationProductisationContribution.cmake")
+umicom_add_application_productisation_contribution(
+    NAME "creator"
+    TARGET "umicom_ai_creator_productisation"
+    SOURCE "src/productisation_contribution.c"
+    TEST_SOURCE "tests/test_productisation_contribution.c")
