@@ -28,12 +28,20 @@ static const UmiProductApplicationAdoption ADOPTION = {
     1
 };
 
+/*
+ * Provide the ai creator productisation contribution operation used by this module and its
+ * client applications.
+ */
 const UmiProductApplicationAdoption *
 umi_ai_creator_productisation_contribution(void)
 {
     return &ADOPTION;
 }
 
+/*
+ * Provide the ai creator productisation snapshot operation used by this module and its
+ * client applications.
+ */
 UmiStatus umi_ai_creator_productisation_snapshot(
     UmiProductApplicationAdoptionSnapshot *out_snapshot)
 {

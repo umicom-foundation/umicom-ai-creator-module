@@ -17,6 +17,10 @@
 
 #include "umicom/ai_creator/application.h"
 
+/*
+ * Start this command or application, report setup failures, and return a process exit code
+ * to the operating system.
+ */
 int main(void)
 {
     UmiApplicationExperienceStatus status;
