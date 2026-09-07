@@ -6,6 +6,8 @@ application:
   short_name: AI Creator
   version: 0.1.0
   executable: umicom-ai-creator-console
+  native_executable: umicom-ai-creator
+  console_executable: umicom-ai-creator-console
   aliases: [creator]
 
 framework:
@@ -14,6 +16,8 @@ framework:
 
 frontends:
   - console
+  # Shared Framework GTK layout preview; domain services require controllers.
+  - gtk
 
 entry:
   kind: workbench
