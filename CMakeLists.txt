@@ -172,3 +172,8 @@ umicom_add_application_productisation_contribution(
     TARGET "umicom_ai_creator_productisation"
     SOURCE "src/productisation_contribution.c"
     TEST_SOURCE "tests/test_productisation_contribution.c")
+
+# Shared AI behaviour belongs to Framework. This composition adds an operations
+# surface and example without removing the module's existing tests or layouts.
+include("${CMAKE_CURRENT_SOURCE_DIR}/../../framework/cmake/UmicomAiWorkspace.cmake")
+umicom_attach_ai_workspace(NAME creator TARGET umicom_ai_creator_module)
