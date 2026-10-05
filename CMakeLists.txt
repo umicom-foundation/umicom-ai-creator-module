@@ -177,3 +177,20 @@ umicom_add_application_productisation_contribution(
 # surface and example without removing the module's existing tests or layouts.
 include("${CMAKE_CURRENT_SOURCE_DIR}/../../framework/cmake/UmicomAiWorkspace.cmake")
 umicom_attach_ai_workspace(NAME creator TARGET umicom_ai_creator_module)
+
+# Exercise the product identity boundary against the shared transaction owner.
+if(BUILD_TESTING)
+    add_executable(umicom_ai_creator_module-context-review-test tests/test_context_review.c)
+    target_link_libraries(umicom_ai_creator_module-context-review-test PRIVATE umicom_ai_creator_module)
+    umicom_apply_warnings(umicom_ai_creator_module-context-review-test)
+    umicom_apply_sanitizers(umicom_ai_creator_module-context-review-test)
+    foreach(context_case publication stale foreign clear divergent_ui)
+        add_test(NAME creator.context_review.${context_case}
+            COMMAND umicom_ai_creator_module-context-review-test ${context_case})
+        set_tests_properties(creator.context_review.${context_case} PROPERTIES
+            LABELS "application;context-review;creator")
+    endforeach()
+    if(COMMAND umicom_register_validation_target)
+        umicom_register_validation_target(umicom_ai_creator_module-context-review-test)
+    endif()
+endif()
